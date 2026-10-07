@@ -1,0 +1,114 @@
+<!--
+  bold-two-column-timeline — copy-paste resume template (no build tools, no Node required)
+
+  HOW TO USE:
+  1. Save a copy of this file (e.g. my-resume.html) and open it in any text editor.
+  2. Find-and-replace every {{token}} below with your real info. Tokens are
+     named for what goes in them (e.g. {{full_name}}, {{job1_title}}).
+  3. This file has 2 job blocks and 5 skill tags as a starting shape — copy
+     a whole job block to add more jobs, delete extra {{skill_N}} entries
+     you don't need, same for the other repeated {{itemN}}-style tokens.
+  4. To change the theme color, edit the single --accent value in the
+     <style> block below (search for "--accent:") — every color on the
+     page derives from that one value.
+  5. Open the finished file in a browser and use Print -> Save as PDF
+     (margins: "None") to export. The page is sized for one US Letter page.
+
+  This is the same design as core/render.js's "bold-two-column-timeline" template in the
+  TailorCV repo (https://github.com/DimeDataCloud/tailorcv, engine/)
+  — that version is driven by a CLI with optional AI job-tailoring; this
+  file is the plain, no-tooling-required version of the same design.
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>{{full_name}} — Resume</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap');
+  * { margin: 0; padding: 0; box-sizing: border-box; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+  body { background: #dde3eb; display: flex; justify-content: center; padding: 36px 20px; }
+  @media print { body { background: #fff; padding: 0; } .resume { box-shadow: none !important; } }
+  body { font-family:'Inter',Arial,sans-serif; }
+  .resume { display:flex; flex-direction:column; flex-shrink:0; width:816px; height:1056px; overflow:hidden; background:#eef0f4; box-shadow:0 10px 50px rgba(0,0,0,0.2); font-size:var(--base,10px); padding:2.4em 2.2em; }
+  h2 { font-family:'Poppins',sans-serif; color:#2b3fe0; font-size:1.3em; font-weight:800; margin:0 0 0.6em; }
+  .cols { display:grid; grid-template-columns:1fr 1.3fr; gap:1.6em; flex:1; }
+  .pill-row { display:flex; flex-wrap:wrap; gap:0.5em; }
+  .pill { background:rgba(0,0,0,0.05); border:1px solid #2b3fe0; color:#222; border-radius:999px; padding:0.3em 0.9em; font-size:0.85em; font-weight:600; }
+  .contact-item { font-size:0.88em; margin-bottom:0.4em; }
+  .timeline { position:relative; padding-left:1.4em; border-left:3px solid #2b3fe0; }
+  .exp-item { position:relative; margin-bottom:1.1em; }
+  .exp-item::before { content:''; position:absolute; left:-1.85em; top:0.15em; width:12px; height:12px; border-radius:50%; background:#fff; border:3px solid #2b3fe0; }
+  .exp-item .role { font-weight:800; font-family:'Poppins',sans-serif; color:#2b3fe0; font-size:1em; }
+  .exp-item .meta { font-size:0.82em; color:#555; margin:0.15em 0 0.35em; }
+  .exp-item ul { margin:0; padding-left:1.1em; font-size:0.85em; color:#333; }
+  .exp-item li { margin-bottom:0.2em; }
+  .footer-bar { display:flex; justify-content:space-between; align-items:center; border-top:2px solid #2b3fe0; padding-top:0.8em; margin-top:1em; }
+  .footer-bar .lockup strong { display:block; font-family:'Poppins',sans-serif; font-size:1.8em; color:#2b3fe0; font-weight:800; }
+  .id-badge { position:relative; width:6.6em; height:6.6em; flex-shrink:0; }
+  .id-badge .halo { position:absolute; inset:0.35em; border-radius:50%; background:#2b3fe0; opacity:0.18; }
+  .id-badge .ring-svg { position:absolute; inset:0; width:100%; height:100%; }
+  .id-badge .id-circle { position:absolute; inset:1.5em; border-radius:50%; background:#fff; border:2px solid #2b3fe0; display:flex; align-items:center; justify-content:center; font-family:'Poppins',sans-serif; font-weight:800; color:#2b3fe0; font-size:1.3em; box-shadow:0 2px 8px rgba(0,0,0,0.1); }
+</style>
+</head>
+<body>
+  <div class="resume">
+    <p style="font-size:0.92em; color:#333; line-height:1.5; margin-bottom:1.2em;">{{professional_summary}}</p>
+    <div class="cols">
+      <div>
+        <h2>Skills</h2>
+        <div class="pill-row">
+<span class="pill">{{skill_1}}</span>
+<span class="pill">{{skill_2}}</span>
+<span class="pill">{{skill_3}}</span>
+<span class="pill">{{skill_4}}</span>
+<span class="pill">{{skill_5}}</span>
+        </div>
+        <h2 style="margin-top:1.2em;">Contact</h2>
+        <div class="contact-item">{{phone}}</div>
+        <div class="contact-item">{{email}}</div>
+        <div class="contact-item">{{city_state}}</div>
+        <div class="contact-item">{{linkedin_url}}</div>
+        <h2 style="margin-top:1.2em;">Education</h2>
+        <div class="contact-item">{{degree}} — {{school_name}}</div>
+      </div>
+      <div>
+        <h2>Experience</h2>
+        <div class="timeline">
+        <div class="exp-item">
+          <div class="role">{{job1_title}}</div>
+          <div class="meta">{{job1_company}} · {{job1_dates}}</div>
+          <ul>
+<li>{{job1_bullet_1}}</li>
+<li>{{job1_bullet_2}}</li>
+<li>{{job1_bullet_3}}</li>
+          </ul>
+        </div>
+        <div class="exp-item">
+          <div class="role">{{job2_title}}</div>
+          <div class="meta">{{job2_company}} · {{job2_dates}}</div>
+          <ul>
+<li>{{job2_bullet_1}}</li>
+<li>{{job2_bullet_2}}</li>
+<li>{{job2_bullet_3}}</li>
+          </ul>
+        </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bar">
+      <div class="lockup">{{headline_title}}<strong>{{full_name}}</strong></div>
+      <div class="id-badge">
+        <div class="halo"></div>
+        <svg class="ring-svg" viewBox="0 0 200 200">
+          <defs><path id="ringPath" d="M 100,100 m -84,0 a 84,84 0 1,1 168,0 a 84,84 0 1,1 -168,0"/></defs>
+          <text font-size="12" letter-spacing="3" fill="#2b3fe0" font-family="Poppins, sans-serif" font-weight="700">
+            <textPath href="#ringPath" startOffset="0%">&#8226; {{HEADLINE_TITLE}} &#8226; {{HEADLINE_TITLE}}</textPath>
+          </text>
+        </svg>
+        <div class="id-circle">{{initials}}</div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

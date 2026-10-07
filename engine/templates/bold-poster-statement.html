@@ -1,0 +1,125 @@
+<!--
+  bold-poster-statement — copy-paste resume template (no build tools, no Node required)
+
+  HOW TO USE:
+  1. Save a copy of this file (e.g. my-resume.html) and open it in any text editor.
+  2. Find-and-replace every {{token}} below with your real info. Tokens are
+     named for what goes in them (e.g. {{full_name}}, {{job1_title}}).
+  3. This file has 2 job blocks and 5 skill tags as a starting shape — copy
+     a whole job block to add more jobs, delete extra {{skill_N}} entries
+     you don't need, same for the other repeated {{itemN}}-style tokens.
+  4. To change the theme color, edit the single --accent value in the
+     <style> block below (search for "--accent:") — every color on the
+     page derives from that one value.
+  5. Open the finished file in a browser and use Print -> Save as PDF
+     (margins: "None") to export. The page is sized for one US Letter page.
+
+  This is the same design as core/render.js's "bold-poster-statement" template in the
+  TailorCV repo (https://github.com/DimeDataCloud/tailorcv, engine/)
+  — that version is driven by a CLI with optional AI job-tailoring; this
+  file is the plain, no-tooling-required version of the same design.
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>{{full_name}} — Resume</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;500;600;700&display=swap');
+  * { margin: 0; padding: 0; box-sizing: border-box; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+  body { background: #dde3eb; display: flex; justify-content: center; padding: 36px 20px; }
+  @media print { body { background: #fff; padding: 0; } .resume { box-shadow: none !important; } }
+  body { font-family:'Inter',Arial,sans-serif; }
+  .resume { flex-shrink:0; width:816px; height:1056px; overflow:hidden; background:#f6efe4; box-shadow:0 10px 50px rgba(0,0,0,0.2); font-size:var(--base,10px); padding:2.2em 2.2em; position:relative; }
+  .orb { position:absolute; border-radius:50%; z-index:0; opacity:0.55; filter:blur(0.5px); }
+  .orb.o1 { width:2.6em; height:2.6em; top:1.6em; right:6.2em; background:radial-gradient(circle at 32% 28%, #fff 0%, #d9622b 45%, #d9622b 100%); }
+  .orb.o2 { width:1.1em; height:1.1em; top:4.6em; right:3.2em; background:radial-gradient(circle at 32% 28%, #fff 0%, #1a1a1a 60%, #1a1a1a 100%); opacity:0.35; }
+  .squiggle { position:absolute; top:0.8em; right:0.6em; width:5.5em; z-index:0; }
+  .headline, .byline, .hero, .rule, .section-title, .exp-grid, .tag-row, .lang-row { position:relative; z-index:1; }
+  .headline { font-family:'Archivo Black',sans-serif; }
+  .headline .l1 { font-size:2.6em; line-height:1; color:#1a1a1a; }
+  .headline .l2 { font-size:2.6em; line-height:1; color:transparent; -webkit-text-stroke:2px #1a1a1a; }
+  .byline { display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:1.2em; }
+  .byline .name { font-size:1.05em; font-weight:700; color:#d9622b; }
+  .byline .portfolio-btn { font-size:0.76em; font-weight:700; text-decoration:none; color:#1a1a1a; border:1.5px solid #1a1a1a; border-radius:999px; padding:0.35em 0.9em; display:inline-flex; align-items:center; gap:0.35em; }
+  .hero { display:grid; grid-template-columns:1fr 1.7fr; gap:1.2em; align-items:start; margin-bottom:1.6em; }
+  .initials-hero { aspect-ratio:3/4; border-radius:6px; background:#d9622b; opacity:0.9; display:flex; align-items:center; justify-content:center; font-family:'Archivo Black',sans-serif; font-size:2.6em; color:#fff; }
+  .about p { font-size:0.85em; color:#555; line-height:1.6; margin:0 0 0.8em; }
+  .badge-row { display:flex; gap:1.6em; font-size:0.78em; }
+  .badge-row .line { color:#555; margin-bottom:0.15em; }
+  hr.rule { border:none; border-top:1.5px solid #1a1a1a; margin:1.2em 0; }
+  h3.section-title { font-size:1.05em; font-weight:800; text-transform:uppercase; letter-spacing:0.5px; margin:0 0 0.8em; }
+  .exp-grid { display:grid; grid-template-columns:1fr 1fr; gap:1.2em; margin-bottom:1.4em; }
+  .exp-card .title { font-weight:700; font-size:0.9em; }
+  .exp-card .meta { font-size:0.76em; color:#666; margin-bottom:0.3em; }
+  .exp-card ul { margin:0; padding-left:1em; font-size:0.8em; color:#555; }
+  .tag-row { display:flex; flex-wrap:wrap; gap:0.5em; margin-bottom:1.2em; }
+  .tag-row .tag { font-size:0.76em; background:#fff; border:1.5px solid #1a1a1a; border-radius:6px; padding:0.25em 0.6em; }
+  .lang-row { display:flex; gap:1.4em; }
+  .lang-ring { width:3.4em; height:3.4em; border-radius:50%; display:flex; align-items:center; justify-content:center; position:relative; text-align:center; }
+  .lang-ring-inner { width:2.5em; height:2.5em; border-radius:50%; background:#f6efe4; display:flex; align-items:center; justify-content:center; font-size:0.62em; font-weight:700; }
+  .lang-lbl { position:absolute; top:100%; left:50%; transform:translateX(-50%); white-space:nowrap; font-size:0.62em; color:#555; margin-top:0.4em; }
+</style>
+</head>
+<body>
+  <div class="resume">
+    <div class="orb o1"></div>
+    <div class="orb o2"></div>
+    <svg class="squiggle" viewBox="0 0 100 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M4 8C16 8 12 32 24 32C36 32 32 8 44 8C56 8 52 32 64 32C76 32 72 8 84 8C90 8 92 12 96 16" stroke="#d9622b" stroke-width="5" stroke-linecap="round"/>
+    </svg>
+    <div class="headline"><div class="l1">{{headline_title}}</div><div class="l2">{{headline_title}}</div></div>
+    <div class="byline">
+      <div class="name">{{full_name}}</div>
+      <a class="portfolio-btn" href="{{linkedin_url}}">Profile &#8599;</a>
+    </div>
+    <div class="hero">
+      <div class="initials-hero">{{initials}}</div>
+      <div class="about">
+        <p>{{professional_summary}}</p>
+        <div class="badge-row">
+          <div><strong>Education</strong><div class="line">{{degree}} — {{school_name}}</div></div>
+          <div><strong>Contact</strong><div class="line">{{phone}}</div><div class="line">{{email}}</div></div>
+        </div>
+      </div>
+    </div>
+    <hr class="rule">
+    <h3 class="section-title">Experience</h3>
+    <div class="exp-grid">
+      <div class="exp-card">
+        <div class="title">{{job1_title}}</div>
+        <div class="meta">{{job1_company}} · {{job1_dates}}</div>
+        <ul>
+<li>{{job1_bullet_1}}</li>
+<li>{{job1_bullet_2}}</li>
+<li>{{job1_bullet_3}}</li>
+        </ul>
+      </div>
+      <div class="exp-card">
+        <div class="title">{{job2_title}}</div>
+        <div class="meta">{{job2_company}} · {{job2_dates}}</div>
+        <ul>
+<li>{{job2_bullet_1}}</li>
+<li>{{job2_bullet_2}}</li>
+<li>{{job2_bullet_3}}</li>
+        </ul>
+      </div>
+    </div>
+    <h3 class="section-title">Skills &amp; Tools</h3>
+    <div class="tag-row">
+<span class="tag">{{skill_1}}</span>
+<span class="tag">{{skill_2}}</span>
+<span class="tag">{{skill_3}}</span>
+<span class="tag">{{skill_4}}</span>
+<span class="tag">{{skill_5}}</span>
+<span class="tag">{{tool_1}}</span>
+<span class="tag">{{tool_2}}</span>
+<span class="tag">{{tool_3}}</span>
+    </div>
+    <h3 class="section-title">Languages</h3>
+    <div class="lang-row">
+<div class="lang-ring" style="background:conic-gradient(#d9622b 75%, #e7ded0 0);"><div class="lang-ring-inner">75%</div><div class="lang-lbl">{{language_1}}</div></div>
+    </div>
+  </div>
+</body>
+</html>

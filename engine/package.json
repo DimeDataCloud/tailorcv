@@ -1,0 +1,42 @@
+{
+  "name": "resume-tailor-skill",
+  "version": "1.0.0",
+  "description": "AI-tailored, print-ready resumes from 9 design templates — a standalone CLI plus native Claude Code and Hermes Agent skills.",
+  "license": "MIT",
+  "author": "Dime Data",
+  "homepage": "https://github.com/DimeDataCloud/tailorcv/tree/main/engine",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/DimeDataCloud/tailorcv.git",
+    "directory": "engine"
+  },
+  "bin": {
+    "resume-tailor": "bin/tailor.js"
+  },
+  "main": "core/render.js",
+  "scripts": {
+    "tailor": "node bin/tailor.js"
+  },
+  "peerDependencies": {
+    "playwright": ">=1.40.0"
+  },
+  "peerDependenciesMeta": {
+    "playwright": {
+      "optional": true
+    }
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "keywords": [
+    "resume",
+    "cv",
+    "resume-builder",
+    "resume-tailoring",
+    "job-search",
+    "ollama",
+    "claude-code-skill",
+    "hermes-agent-skill",
+    "pdf"
+  ]
+}

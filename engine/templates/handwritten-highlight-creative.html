@@ -1,0 +1,106 @@
+<!--
+  handwritten-highlight-creative — copy-paste resume template (no build tools, no Node required)
+
+  HOW TO USE:
+  1. Save a copy of this file (e.g. my-resume.html) and open it in any text editor.
+  2. Find-and-replace every {{token}} below with your real info. Tokens are
+     named for what goes in them (e.g. {{full_name}}, {{job1_title}}).
+  3. This file has 2 job blocks and 5 skill tags as a starting shape — copy
+     a whole job block to add more jobs, delete extra {{skill_N}} entries
+     you don't need, same for the other repeated {{itemN}}-style tokens.
+  4. To change the theme color, edit the single --accent value in the
+     <style> block below (search for "--accent:") — every color on the
+     page derives from that one value.
+  5. Open the finished file in a browser and use Print -> Save as PDF
+     (margins: "None") to export. The page is sized for one US Letter page.
+
+  This is the same design as core/render.js's "handwritten-highlight-creative" template in the
+  TailorCV repo (https://github.com/DimeDataCloud/tailorcv, engine/)
+  — that version is driven by a CLI with optional AI job-tailoring; this
+  file is the plain, no-tooling-required version of the same design.
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>{{full_name}} — Resume</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Inter:wght@400;500;600&display=swap');
+  * { margin: 0; padding: 0; box-sizing: border-box; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+  body { background: #dde3eb; display: flex; justify-content: center; padding: 36px 20px; }
+  @media print { body { background: #fff; padding: 0; } .resume { box-shadow: none !important; } }
+  body { font-family:'Inter',Arial,sans-serif; }
+  .resume { flex-shrink:0; width:816px; height:1056px; overflow:hidden; background:#fafafa; box-shadow:0 10px 50px rgba(0,0,0,0.2); font-size:var(--base,10px); padding:1.6em; }
+  .frame { height:100%; border:2.5px solid #1a1a1a; border-radius:14px; padding:1.6em;
+    background-image:linear-gradient(#d9d9d9 1px, transparent 1px), linear-gradient(90deg, #d9d9d9 1px, transparent 1px);
+    background-size:22px 22px; background-color:#fff; display:grid; grid-template-columns:230px 1fr; column-gap:1.4em; overflow:hidden; }
+  .name-heading { grid-column:1/-1; font-family:'Caveat',cursive; font-size:2.3em; font-weight:700; margin:0 0 0.7em; }
+  h3.hl { display:inline-block; position:relative; font-family:'Caveat',cursive; font-size:1.5em; font-weight:700; margin:0 0 0.6em; z-index:1; }
+  h3.hl::before { content:''; position:absolute; left:-6px; right:-6px; bottom:2px; top:35%; background:#f5e14a; z-index:-1; opacity:0.85; transform:rotate(-1deg); }
+  .initials-block { width:70px; height:70px; border:2px solid #1a1a1a; border-radius:8px; display:flex; align-items:center; justify-content:center; font-size:1.8em; font-weight:800; margin-bottom:0.9em; }
+  .sidebar section, .main section { margin-bottom:1.2em; }
+  .sidebar p, .contact-line { font-size:0.85em; color:#4a4a4a; }
+  .sidebar ul { margin:0; padding-left:1.1em; font-size:0.85em; color:#4a4a4a; }
+  .exp-line { font-size:0.88em; margin-bottom:0.7em; }
+  .exp-line .company { font-weight:700; }
+  .exp-line .tags { color:#555; font-size:0.85em; }
+  .exp-line ul { margin:0.2em 0 0; padding-left:1.1em; font-size:0.85em; color:#4a4a4a; }
+</style>
+</head>
+<body>
+  <div class="resume">
+    <div class="frame">
+      <div class="name-heading">{{full_name}}</div>
+      <div class="sidebar">
+        <div class="initials-block">{{initials}}</div>
+        <section>
+          <h3 class="hl">About</h3>
+          <p>{{professional_summary}}</p>
+        </section>
+        <section>
+          <h3 class="hl">Skills</h3>
+          <ul>
+<li>{{skill_1}}</li>
+<li>{{skill_2}}</li>
+<li>{{skill_3}}</li>
+<li>{{skill_4}}</li>
+<li>{{skill_5}}</li>
+          </ul>
+        </section>
+        <section>
+          <div class="contact-line">{{phone}}</div>
+          <div class="contact-line">{{email}}</div>
+          <div class="contact-line">{{city_state}}</div>
+        </section>
+      </div>
+      <div class="main">
+        <section>
+          <h3 class="hl">Experience</h3>
+        <div class="exp-line">
+          <span class="company">{{job1_company}}</span><br>
+          <span class="tags">{{job1_title}} — {{job1_dates}}</span>
+          <ul>
+<li>{{job1_bullet_1}}</li>
+<li>{{job1_bullet_2}}</li>
+<li>{{job1_bullet_3}}</li>
+          </ul>
+        </div>
+        <div class="exp-line">
+          <span class="company">{{job2_company}}</span><br>
+          <span class="tags">{{job2_title}} — {{job2_dates}}</span>
+          <ul>
+<li>{{job2_bullet_1}}</li>
+<li>{{job2_bullet_2}}</li>
+<li>{{job2_bullet_3}}</li>
+          </ul>
+        </div>
+        </section>
+        <section>
+          <h3 class="hl">Education</h3>
+          <div>{{degree}} — {{school_name}}</div>
+        </section>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,130 @@
+<!--
+  paper-id-card — copy-paste resume template (no build tools, no Node required)
+
+  HOW TO USE:
+  1. Save a copy of this file (e.g. my-resume.html) and open it in any text editor.
+  2. Find-and-replace every {{token}} below with your real info. Tokens are
+     named for what goes in them (e.g. {{full_name}}, {{job1_title}}).
+  3. This file has 2 job blocks and 6 skill pills as a starting shape — copy
+     a whole job block (the <div class="job">...</div>) to add more jobs,
+     delete extra {{skill_N}} pills you don't need.
+  4. To change the theme color, edit the single --accent value in the
+     <style> block below (search for "--accent:") — the ID-card and every
+     highlighter mark derive from that one value.
+  5. Open the finished file in a browser and use Print -> Save as PDF
+     (margins: "None") to export. The page is sized for one US Letter page.
+
+  This is the same design as core/render.js's "paper-id-card" template in the
+  TailorCV repo (https://github.com/DimeDataCloud/tailorcv, engine/)
+  — that version is driven by a CLI with optional AI job-tailoring; this
+  file is the plain, no-tooling-required version of the same design.
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>{{full_name}} — Resume</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Nunito+Sans:wght@400;600;700;800&display=swap');
+  :root { --accent: #fbd934; }
+  * { margin: 0; padding: 0; box-sizing: border-box; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+  body { background: #dde3eb; display: flex; justify-content: center; padding: 36px 20px; }
+  @media print { body { background: #fff; padding: 0; } .resume { box-shadow: none !important; } }
+  body { font-family:'Nunito Sans',Arial,sans-serif; }
+  .resume { flex-shrink:0; width:816px; height:1056px; overflow:hidden; background:#4f4f4f; box-shadow:0 10px 50px rgba(0,0,0,0.2); font-size:var(--base,10px); padding:1.4em; display:flex; }
+  .paper { flex:1; background:#f4f2ec; background-image:radial-gradient(rgba(0,0,0,0.025) 1px, transparent 1px); background-size:4px 4px; padding:2.4em 3em; box-shadow:0 8px 30px rgba(0,0,0,0.4); color:#2a2a2a; overflow:hidden; display:flex; flex-direction:column; }
+  .id-row { display:flex; gap:1.8em; align-items:flex-start; }
+  .id-card { position:relative; flex-shrink:0; }
+  .id-frame { background:var(--accent); padding:0.7em; box-shadow:0 4px 10px rgba(0,0,0,0.15); }
+  .monogram { width:10em; height:10em; background:#fdfcf8; display:flex; align-items:center; justify-content:center; font-family:'Caveat',cursive; font-weight:700; font-size:1em; }
+  .monogram span { font-size:4.4em; }
+  .clip { position:absolute; top:-0.9em; left:42%; width:1.3em; height:3.4em; border:0.26em solid #b9b9b9; border-radius:0.8em; transform:rotate(12deg); }
+  .id-info { flex:1; min-width:0; }
+  .script-name { font-family:'Caveat',cursive; font-size:2.6em; font-weight:700; line-height:1.1; }
+  .id-info > p { font-size:0.92em; color:#555; line-height:1.45; margin:0.3em 0 0.9em; }
+  .info-table { border:1.5px solid #333; font-size:0.9em; }
+  .tbl-row { display:flex; }
+  .tbl-row + .tbl-row { border-top:1.5px solid #333; }
+  .tbl-cell { flex:1; padding:0.5em 0.8em; line-height:1.7; min-width:0; overflow-wrap:anywhere; }
+  .tbl-cell + .tbl-cell { border-left:1.5px solid #333; }
+  .tbl-link { flex:0 0 6em; border-left:1.5px solid #333; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:0.2em; text-decoration:none; color:#2a2a2a; text-align:center; }
+  .tbl-link .arrow { font-size:1.6em; line-height:1; }
+  .tbl-link .lbl { font-size:0.72em; font-weight:700; letter-spacing:0.5px; }
+  .cols { display:grid; grid-template-columns:1fr 1fr; gap:2.6em; margin-top:2em; flex:1; align-content:start; }
+  h3.hl { font-family:'Caveat',cursive; font-size:1.9em; font-weight:700; margin:0 0 0.5em; }
+  h3.hl span { background:var(--accent); padding:0.04em 0.28em; box-decoration-break:clone; -webkit-box-decoration-break:clone; }
+  .job { margin-bottom:1.1em; }
+  .job-head { display:flex; justify-content:space-between; gap:1em; font-size:0.95em; }
+  .job-role { font-size:0.88em; color:#444; }
+  .job ul { margin:0.4em 0 0; padding-left:1.4em; font-size:0.88em; color:#333; line-height:1.5; }
+  .edu-line { font-size:0.92em; }
+  .pill-row { display:flex; flex-wrap:wrap; gap:0.6em; }
+  .pill { border:1.5px solid #555; border-radius:1.2em; padding:0.3em 1em; font-size:0.82em; background:#fbfaf5; }
+  .note-card { position:relative; border:2px solid var(--accent); background:#fdfbe8; border-radius:6px; padding:1.2em 1.4em; }
+  .note-card .pin { position:absolute; top:-0.5em; left:1.6em; width:1em; height:1em; border-radius:50%; background:#e05b4f; }
+  .note-lines { font-size:1em; color:#333; line-height:1.9; text-align:center; }
+</style>
+</head>
+<body>
+  <div class="resume">
+    <div class="paper">
+      <div class="id-row">
+        <div class="id-card">
+          <div class="id-frame"><div class="monogram"><span>{{initials}}</span></div></div>
+          <div class="clip"></div>
+        </div>
+        <div class="id-info">
+          <div class="script-name">{{full_name}}</div>
+          <p>{{professional_summary}}</p>
+          <div class="info-table">
+            <div class="tbl-row"><div class="tbl-cell"><b>ROLE</b>&nbsp; {{professional_title}}</div><div class="tbl-cell"><b>LOC</b>&nbsp; {{city_state}}</div></div>
+            <div class="tbl-row"><div class="tbl-cell">&#9742; {{phone}}<br>&#9993; {{email}}<br>&#127760; {{linkedin_url}}</div><a class="tbl-link" href="{{linkedin_url}}"><span class="arrow">&#8599;</span><span class="lbl">PROFILE</span></a></div>
+            <div class="tbl-row"><div class="tbl-cell"><b>LANG</b>&nbsp; {{languages}}</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="cols">
+        <div>
+          <h3 class="hl"><span>Work Experience</span></h3>
+          <div class="job">
+            <div class="job-head"><b>{{job1_company}}</b><span>{{job1_dates}}</span></div>
+            <div class="job-role">{{job1_title}}</div>
+            <ul>
+<li>{{job1_bullet_1}}</li>
+<li>{{job1_bullet_2}}</li>
+<li>{{job1_bullet_3}}</li>
+            </ul>
+          </div>
+          <div class="job">
+            <div class="job-head"><b>{{job2_company}}</b><span>{{job2_dates}}</span></div>
+            <div class="job-role">{{job2_title}}</div>
+            <ul>
+<li>{{job2_bullet_1}}</li>
+<li>{{job2_bullet_2}}</li>
+<li>{{job2_bullet_3}}</li>
+            </ul>
+          </div>
+          <h3 class="hl" style="margin-top:0.5em;"><span>Education</span></h3>
+          <div class="edu-line">{{degree}} — {{school_name}}</div>
+        </div>
+        <div>
+          <h3 class="hl"><span>Key Competencies</span></h3>
+          <div class="pill-row">
+<span class="pill">{{skill_1}}</span>
+<span class="pill">{{skill_2}}</span>
+<span class="pill">{{skill_3}}</span>
+<span class="pill">{{skill_4}}</span>
+<span class="pill">{{skill_5}}</span>
+<span class="pill">{{skill_6}}</span>
+          </div>
+          <h3 class="hl" style="margin-top:1.6em;"><span>Toolbox</span></h3>
+          <div class="note-card">
+            <div class="pin"></div>
+            <div class="note-lines">{{tool_1}}<br>{{tool_2}}<br>{{tool_3}}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

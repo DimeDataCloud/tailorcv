@@ -1,0 +1,123 @@
+<!--
+  warm-spotlight-poster — copy-paste resume template (no build tools, no Node required)
+
+  HOW TO USE:
+  1. Save a copy of this file (e.g. my-resume.html) and open it in any text editor.
+  2. Find-and-replace every {{token}} below with your real info. Tokens are
+     named for what goes in them (e.g. {{full_name}}, {{job1_title}}).
+  3. This file has 2 job blocks and 6 skill entries as a starting shape — copy
+     a whole job block (the <div class="jny-item">...</div>) to add more jobs,
+     delete extra {{skill_N}} entries you don't need.
+  4. To change the theme color, edit the single --accent value in the
+     <style> block below (search for "--accent:") — every gold element on
+     the page derives from that one value.
+  5. Open the finished file in a browser and use Print -> Save as PDF
+     (margins: "None") to export. The page is sized for one US Letter page.
+
+  This is the same design as core/render.js's "warm-spotlight-poster" template in the
+  TailorCV repo (https://github.com/DimeDataCloud/tailorcv, engine/)
+  — that version is driven by a CLI with optional AI job-tailoring; this
+  file is the plain, no-tooling-required version of the same design.
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>{{full_name}} — Resume</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Barlow:wght@400;500;600;700&display=swap');
+  :root { --accent: #d8b25f; }
+  * { margin: 0; padding: 0; box-sizing: border-box; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+  body { background: #dde3eb; display: flex; justify-content: center; padding: 36px 20px; }
+  @media print { body { background: #fff; padding: 0; } .resume { box-shadow: none !important; } }
+  body { font-family:'Barlow',Arial,sans-serif; }
+  .resume { flex-shrink:0; width:816px; height:1056px; overflow:hidden; position:relative; color:#eae1d2;
+    background:radial-gradient(120% 80% at 52% 40%, #837868 0%, #6a6053 42%, #514940 78%, #423b33 100%);
+    box-shadow:0 10px 50px rgba(0,0,0,0.2); font-size:var(--base,10px); padding:2.4em 2.6em; display:flex; flex-direction:column; }
+  .side-label { position:absolute; top:5em; right:1em; writing-mode:vertical-rl; font-size:1.05em; letter-spacing:3px; color:#cfc4b2; }
+  .side-label b { font-weight:700; }
+  .headline { font-family:'Archivo Black',sans-serif; font-size:3.4em; line-height:0.95; letter-spacing:1px; color:#efe7d8; text-shadow:0 3px 14px rgba(0,0,0,0.35); text-transform:uppercase; }
+  .byline { margin-top:0.6em; font-size:1.3em; letter-spacing:3px; color:#d7cebc; text-transform:uppercase; }
+  .byline b { color:var(--accent); }
+  .cols { display:grid; grid-template-columns:1fr 1.15fr; gap:1.6em; margin-top:1.8em; flex:1; align-content:start; }
+  .col { display:flex; flex-direction:column; gap:1.4em; min-width:0; }
+  .card { background:rgba(40,35,29,0.55); border-radius:6px; padding:1.2em 1.6em; }
+  .card-title { font-size:1.5em; letter-spacing:2px; font-weight:600; color:#f3ecdc; }
+  .card-title b { font-weight:800; }
+  .card-kicker { margin-top:0.7em; font-size:1.05em; letter-spacing:2px; font-weight:700; color:var(--accent); text-transform:uppercase; }
+  .card-lines, .card p { margin-top:0.6em; font-size:0.95em; line-height:1.5; color:#c8bdaa; }
+  .squiggle { width:7em; height:2.4em; align-self:flex-end; margin:-0.4em 1em 0 0; }
+  .sec-title { font-size:1.7em; font-weight:800; letter-spacing:1px; color:#f2ead9; text-shadow:0 1px 6px rgba(0,0,0,0.65); }
+  .edu-line { margin-top:0.7em; font-size:1.05em; font-weight:700; }
+  .edu-line::before { content:'\2022\00a0\00a0'; color:var(--accent); }
+  .jny-item { margin-top:1.1em; }
+  .jny-item:first-of-type { margin-top:0.9em; }
+  .jny-role { font-size:1.1em; font-weight:800; letter-spacing:0.5px; text-transform:uppercase; }
+  .jny-co { font-size:0.95em; color:#cabfad; }
+  .jny-dates { font-size:0.8em; color:#a99e8b; }
+  .jny-bullets { margin:0.35em 0 0; padding-left:1.2em; font-size:0.88em; line-height:1.45; color:#c8bdaa; }
+  .contact { display:flex; flex-direction:column; gap:0.7em; margin-top:0.4em; }
+  .contact-row { display:flex; align-items:center; gap:1em; font-size:1em; }
+  .contact-row .ico { width:2.4em; height:2.4em; border-radius:50%; background:#2c2620; display:flex; align-items:center; justify-content:center; font-size:1em; flex-shrink:0; }
+  .contact-row a { color:var(--accent); text-decoration:none; overflow-wrap:anywhere; }
+</style>
+</head>
+<body>
+  <div class="resume">
+    <div class="side-label">my<b>RESUME</b></div>
+    <div class="headline">{{first_name}}<br>{{last_name}}</div>
+    <div class="byline">@ <b>{{professional_title}}</b></div>
+    <div class="cols">
+      <div class="col">
+        <div class="card">
+          <div class="card-title">MY <b>DNA</b></div>
+          <div class="card-kicker">{{professional_title}}</div>
+          <p>{{professional_summary}}</p>
+        </div>
+        <div class="card">
+          <div class="card-title"><b>SKILLS</b></div>
+          <div class="card-lines">{{skill_1}} &#8226; {{skill_2}} &#8226; {{skill_3}} &#8226; {{skill_4}} &#8226; {{skill_5}} &#8226; {{skill_6}}</div>
+        </div>
+        <div class="contact">
+          <div class="contact-row"><span class="ico">&#9993;</span><span>{{email}}</span></div>
+          <div class="contact-row"><span class="ico">&#9742;</span><span>{{phone}}</span></div>
+          <div class="contact-row"><span class="ico">&#9679;</span><span>{{city_state}}</span></div>
+          <div class="contact-row"><span class="ico">&#127760;</span><a href="{{linkedin_url}}">{{linkedin_url}}</a></div>
+        </div>
+      </div>
+      <div class="col">
+        <div>
+          <div class="sec-title">EDUCATION</div>
+          <div class="edu-line">{{degree}} — {{school_name}}</div>
+        </div>
+        <svg class="squiggle" viewBox="0 0 120 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M4 26 C 20 6, 34 6, 44 20 S 78 34, 96 12 L 112 4" stroke="var(--accent)" stroke-width="4" stroke-linecap="round"/>
+        </svg>
+        <div class="card" style="flex:1;">
+          <div class="card-title">My <b>JOURNEY</b></div>
+          <div class="jny-item">
+            <div class="jny-role">{{job1_title}}</div>
+            <div class="jny-co">{{job1_company}}</div>
+            <div class="jny-dates">{{job1_dates}}</div>
+            <ul class="jny-bullets">
+<li>{{job1_bullet_1}}</li>
+<li>{{job1_bullet_2}}</li>
+<li>{{job1_bullet_3}}</li>
+            </ul>
+          </div>
+          <div class="jny-item">
+            <div class="jny-role">{{job2_title}}</div>
+            <div class="jny-co">{{job2_company}}</div>
+            <div class="jny-dates">{{job2_dates}}</div>
+            <ul class="jny-bullets">
+<li>{{job2_bullet_1}}</li>
+<li>{{job2_bullet_2}}</li>
+<li>{{job2_bullet_3}}</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

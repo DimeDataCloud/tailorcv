@@ -1,0 +1,15 @@
+User-agent: *
+Allow: /
+Allow: /welcome
+Allow: /signin
+Allow: /signup
+Disallow: /api/
+Disallow: /home
+Disallow: /history
+Disallow: /profile
+Disallow: /wizard
+Disallow: /processing
+Disallow: /result
+
+# Sitemap
+Sitemap: https://tailorcv.app/sitemap.xml

@@ -1,0 +1,41 @@
+{
+  "expo": {
+    "name": "TailorCV",
+    "slug": "tailorcv",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/splash-icon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#0D2137"
+    },
+    "ios": {
+      "supportsTablet": false,
+      "bundleIdentifier": "com.tailorcv.app",
+      "buildNumber": "1"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "backgroundColor": "#0D2137",
+        "foregroundImage": "./assets/android-icon-foreground.png"
+      },
+      "package": "com.tailorcv.app",
+      "versionCode": 1
+    },
+    "web": {
+      "favicon": "./assets/favicon.png",
+      "output": "static"
+    },
+    "plugins": [
+      "expo-sharing"
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "74c46a24-d543-4e92-8927-b892b4969841"
+      }
+    },
+    "owner": "DimeDataCloud"
+  }
+}

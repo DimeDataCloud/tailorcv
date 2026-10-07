@@ -1,0 +1,115 @@
+<!--
+  editorial-serif-sidebar — copy-paste resume template (no build tools, no Node required)
+
+  HOW TO USE:
+  1. Save a copy of this file (e.g. my-resume.html) and open it in any text editor.
+  2. Find-and-replace every {{token}} below with your real info. Tokens are
+     named for what goes in them (e.g. {{full_name}}, {{job1_title}}).
+  3. This file has 2 job blocks and 5 skill tags as a starting shape — copy
+     a whole job block to add more jobs, delete extra {{skill_N}} entries
+     you don't need, same for the other repeated {{itemN}}-style tokens.
+  4. To change the theme color, edit the single --accent value in the
+     <style> block below (search for "--accent:") — every color on the
+     page derives from that one value.
+  5. Open the finished file in a browser and use Print -> Save as PDF
+     (margins: "None") to export. The page is sized for one US Letter page.
+
+  This is the same design as core/render.js's "editorial-serif-sidebar" template in the
+  TailorCV repo (https://github.com/DimeDataCloud/tailorcv, engine/)
+  — that version is driven by a CLI with optional AI job-tailoring; this
+  file is the plain, no-tooling-required version of the same design.
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>{{full_name}} — Resume</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@400;500;600;700&display=swap');
+  * { margin: 0; padding: 0; box-sizing: border-box; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+  body { background: #dde3eb; display: flex; justify-content: center; padding: 36px 20px; }
+  @media print { body { background: #fff; padding: 0; } .resume { box-shadow: none !important; } }
+  body { font-family:'Inter',Arial,sans-serif; }
+  .resume { display:grid; grid-template-columns:200px 1fr; flex-shrink:0; width:816px; height:1056px; overflow:hidden; background:#fff; box-shadow:0 10px 50px rgba(0,0,0,0.2); font-size:var(--base,10px); }
+  .sidebar { border-right:2px solid #111; padding:2.4em 1.4em 2.4em 1.6em; overflow:hidden; }
+  .sidebar h3 { font-family:'Playfair Display',serif; font-size:1.1em; font-weight:700; margin:0 0 0.6em; }
+  .sidebar section { margin-bottom:1.7em; font-size:0.9em; color:#4a4a4a; }
+  .initials-badge { width:64px; height:64px; border-radius:50%; background:#111; color:#fff; display:flex; align-items:center; justify-content:center; font-family:'Playfair Display',serif; font-size:1.6em; margin-bottom:1.2em; }
+  .contact-item { margin-bottom:0.6em; overflow-wrap:anywhere; word-break:break-word; display:flex; align-items:flex-start; gap:0.6em; color:#333; }
+  .icon-badge { flex-shrink:0; width:1.7em; height:1.7em; border-radius:50%; background:#111111; color:#fff; display:flex; align-items:center; justify-content:center; font-size:0.85em; margin-top:0.05em; }
+  .sidebar ul { margin:0; padding-left:1.1em; }
+  .sidebar li { margin-bottom:0.3em; }
+  .main { padding:2.4em 2.2em; }
+  .main h1 { font-family:'Playfair Display',serif; font-weight:400; font-size:2.4em; line-height:1.05; margin:0; }
+  .main .role { font-size:0.85em; letter-spacing:1.5px; text-transform:uppercase; color:#555; margin:0.5em 0 1.4em; }
+  .main h2 { font-size:1.2em; font-weight:700; border-bottom:1px solid #ddd; padding-bottom:0.3em; margin:0 0 0.9em; }
+  .main section { margin-bottom:1.6em; }
+  .exp-item { margin-bottom:1em; }
+  .exp-item .role { font-weight:700; font-size:0.98em; }
+  .exp-item .meta { font-size:0.85em; color:#666; margin-bottom:0.35em; }
+  .exp-item ul { margin:0; padding-left:1.1em; font-size:0.88em; color:#444; }
+  .exp-item li { margin-bottom:0.2em; }
+</style>
+</head>
+<body>
+  <div class="resume">
+    <div class="sidebar">
+      <div class="initials-badge">{{initials}}</div>
+      <section>
+        <h3>About</h3>
+        <p>{{professional_summary}}</p>
+      </section>
+      <section>
+        <h3>Contact</h3>
+        <div class="contact-item"><span class="icon-badge">&#9742;</span><span>{{phone}}</span></div>
+        <div class="contact-item"><span class="icon-badge">&#9993;</span><span>{{email}}</span></div>
+        <div class="contact-item"><span class="icon-badge">&#128205;</span><span>{{city_state}}</span></div>
+        <div class="contact-item"><span class="icon-badge">&#128279;</span><span>{{linkedin_url}}</span></div>
+      </section>
+      <section>
+        <h3>Skills</h3>
+        <ul>
+<li>{{skill_1}}</li>
+<li>{{skill_2}}</li>
+<li>{{skill_3}}</li>
+<li>{{skill_4}}</li>
+<li>{{skill_5}}</li>
+        </ul>
+      </section>
+      <section>
+        <h3>Languages</h3>
+        <div class="lang-item">{{language_1}}</div>
+      </section>
+    </div>
+    <div class="main">
+      <h1>{{full_name}}</h1>
+      <div class="role">{{headline_title}}</div>
+      <section>
+        <h2>Experience</h2>
+      <div class="exp-item">
+        <div class="role">{{job1_title}}</div>
+        <div class="meta">{{job1_company}} — {{job1_dates}}</div>
+        <ul>
+<li>{{job1_bullet_1}}</li>
+<li>{{job1_bullet_2}}</li>
+<li>{{job1_bullet_3}}</li>
+        </ul>
+      </div>
+      <div class="exp-item">
+        <div class="role">{{job2_title}}</div>
+        <div class="meta">{{job2_company}} — {{job2_dates}}</div>
+        <ul>
+<li>{{job2_bullet_1}}</li>
+<li>{{job2_bullet_2}}</li>
+<li>{{job2_bullet_3}}</li>
+        </ul>
+      </div>
+      </section>
+      <section>
+        <h2>Education</h2>
+        <div>{{degree}} — {{school_name}}</div>
+      </section>
+    </div>
+  </div>
+</body>
+</html>
